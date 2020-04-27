@@ -24,6 +24,7 @@ import org.apache.kylin.common.KylinConfig;
 import org.apache.kylin.common.exceptions.KylinTimeoutException;
 import org.apache.kylin.common.util.RandomUtil;
 import org.apache.kylin.engine.spark.LocalWithSparkSessionTest;
+import org.apache.kylin.engine.spark.job.KylinBuildEnv;
 import org.apache.kylin.job.exception.SchedulerException;
 import org.apache.kylin.metadata.realization.IRealization;
 import org.apache.kylin.metadata.realization.SQLDigest;
@@ -63,8 +64,8 @@ public class KylinQueryTimeoutTest extends LocalWithSparkSessionTest {
 
     @After
     public void after() {
-        this.cleanupTestMetadata();
-        StorageFactory.clearCache();
+        KylinBuildEnv.clean();
+        super.after();
     }
 
     @Test
